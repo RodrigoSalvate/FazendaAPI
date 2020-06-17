@@ -26,5 +26,10 @@ namespace Testes._Construtor
             Cor = cor;
             return this;
         }
+        public AnimalConstrutor ComPeso(double peso)
+        {
+            Peso = peso;
+            return this;
+        }
     }
 }

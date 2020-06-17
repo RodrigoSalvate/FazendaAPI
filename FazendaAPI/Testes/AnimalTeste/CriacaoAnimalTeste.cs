@@ -49,5 +49,13 @@ namespace Testes.AnimalTeste
         {
             Assert.Throws<ArgumentException>(() => AnimalConstrutor.Novo().ComCor(cor).Construir()).ComMensagem("Cor Inválida");
         }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-16)]
+        public void DevePossuirUmPesoMaiorQueZero(double peso)
+        {
+            Assert.Throws<ArgumentException>(() => AnimalConstrutor.Novo().ComPeso(peso).Construir()).ComMensagem("Peso Inválido");
+        }
     }
 }

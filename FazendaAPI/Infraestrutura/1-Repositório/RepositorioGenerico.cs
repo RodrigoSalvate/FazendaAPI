@@ -23,7 +23,7 @@ namespace Infraestrutura._1_Repositório
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Entidade> ObterPorId(object id)
+        public IEnumerable<Entidade> ObterTodos()
         {
             throw new NotImplementedException();
         }
@@ -38,7 +38,7 @@ namespace Infraestrutura._1_Repositório
             throw new NotImplementedException();
         }
 
-        public void Update(Entidade entidade)
+        public void Atualizar(Entidade entidade)
         {
             throw new NotImplementedException();
         }

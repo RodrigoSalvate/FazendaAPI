@@ -12,17 +12,32 @@ namespace Infraestrutura._2_UnidadeDeTrabalho
         private SqlServerContext contexto = null;
         private RepositorioGenerico<Animal> animalRepositorio = null;
 
-        public UnidadeDeTrabalho()
+        public UnidadeDeTrabalho(SqlServerContext _contexto)
         {
-            contexto = new SqlServerContext();
+            contexto = _contexto;
         }
         public void Commit()
         {
             contexto.SaveChanges();
         }
+
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    contexto.Dispose();
+                }
+            }
+            disposed = true;
+        }
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public IRepositorioGenerico<Animal> AnimalRepositorio

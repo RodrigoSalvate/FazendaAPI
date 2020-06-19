@@ -18,32 +18,38 @@ namespace Negocio.Serviço
             mapper = _mapper;
         }
 
-        public void Atualizar(AnimalDTO Dto)
+        public AnimalDTO ObterPorId(object id)
         {
             throw new NotImplementedException();
-        }
-
-        public void Inserir(AnimalDTO Dto)
-        {
-            var entidade = mapper.Map<AnimalDTO, Animal>(Dto);
-
-            Udt.AnimalRepositorio.Inserir(entidade);
-            Udt.Commit();
         }
 
         public IEnumerable<AnimalDTO> ObterTodos()
         {
-            throw new NotImplementedException();
+            return mapper.Map<IEnumerable<Animal>, IEnumerable<AnimalDTO>>(Udt.AnimalRepositorio.ObterTodos());
+        }
+
+        public void Atualizar(AnimalDTO Dto)
+        {
+            Udt.AnimalRepositorio.Atualizar(mapper.Map<AnimalDTO, Animal>(Dto));
+            Udt.Commit();
+        }
+
+        public void Inserir(AnimalDTO Dto)
+        {
+            Udt.AnimalRepositorio.Inserir(mapper.Map<AnimalDTO, Animal>(Dto));
+            Udt.Commit();
         }
 
         public void Remover(AnimalDTO Dto)
         {
-            throw new NotImplementedException();
+            Udt.AnimalRepositorio.Remover(mapper.Map<AnimalDTO, Animal>(Dto));
+            Udt.Commit();
         }
 
         public void Remover(object id)
         {
-            throw new NotImplementedException();
+            Udt.AnimalRepositorio.Remover(id);
+            Udt.Commit();
         }
 
         public void Validar(AnimalDTO Dto)

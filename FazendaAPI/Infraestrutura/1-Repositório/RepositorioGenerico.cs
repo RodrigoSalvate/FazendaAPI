@@ -2,8 +2,8 @@
 using Dominio._1_Entidades.Base;
 using Infraestrutura._0_Context;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Infraestrutura._1_Repositório
 {
@@ -20,27 +20,26 @@ namespace Infraestrutura._1_Repositório
 
         public void Inserir(Entidade entidade)
         {
-            throw new NotImplementedException();
+            dbSet.Add(entidade);
         }
-
-        public IEnumerable<Entidade> ObterTodos()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Remover(Entidade entidade)
         {
-            throw new NotImplementedException();
+            dbSet.Remove(entidade);
         }
 
         public void Remover(object id)
         {
-            throw new NotImplementedException();
+            Remover(dbSet.Find(id));
         }
 
         public void Atualizar(Entidade entidade)
         {
-            throw new NotImplementedException();
+            dbSet.Attach(entidade).State = EntityState.Modified;
+        }
+
+        public IEnumerable<Entidade> ObterTodos()
+        {
+            return dbSet.ToList();
         }
     }
 }

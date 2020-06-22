@@ -24,5 +24,20 @@ namespace FazendaAPI.Controllers
         {
             return Ok(_animalService.ObterTodos());
         }
+
+        [HttpPost]
+        public IActionResult Post(AnimalDTO animalDTO)
+        {
+            if (animalDTO == null) return BadRequest();
+
+            if (_animalService.Validar(animalDTO))
+                return new ObjectResult(_animalService.Inserir(animalDTO));
+
+            return BadRequest(new
+            {
+                Error = "Erro de Validação!",
+                Mensagem = "O(s) campo(s) obrigatório(s) não foi(ram) informado(s)."
+            });
+        }
     }
 }

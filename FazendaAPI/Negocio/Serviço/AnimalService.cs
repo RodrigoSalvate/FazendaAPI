@@ -28,16 +28,20 @@ namespace Negocio.Serviço
             return mapper.Map<IEnumerable<Animal>, IEnumerable<AnimalDTO>>(Udt.AnimalRepositorio.ObterTodos());
         }
 
-        public void Atualizar(AnimalDTO Dto)
+        public AnimalDTO Atualizar(AnimalDTO Dto)
         {
-            Udt.AnimalRepositorio.Atualizar(mapper.Map<AnimalDTO, Animal>(Dto));
+            var animalBanco = Udt.AnimalRepositorio.Atualizar(mapper.Map<AnimalDTO, Animal>(Dto));
             Udt.Commit();
+
+            return mapper.Map<Animal, AnimalDTO>(animalBanco);
         }
 
-        public void Inserir(AnimalDTO Dto)
+        public AnimalDTO Inserir(AnimalDTO Dto)
         {
-            Udt.AnimalRepositorio.Inserir(mapper.Map<AnimalDTO, Animal>(Dto));
+            var animalBanco = Udt.AnimalRepositorio.Inserir(mapper.Map<AnimalDTO, Animal>(Dto));
             Udt.Commit();
+
+            return mapper.Map<Animal, AnimalDTO>(animalBanco);
         }
 
         public void Remover(AnimalDTO Dto)
@@ -52,7 +56,7 @@ namespace Negocio.Serviço
             Udt.Commit();
         }
 
-        public void Validar(AnimalDTO Dto)
+        public bool Validar(AnimalDTO Dto)
         {
             throw new NotImplementedException();
         }

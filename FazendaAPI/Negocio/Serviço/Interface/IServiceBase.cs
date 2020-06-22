@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Negocio.Serviço.Interface
 {
@@ -6,10 +7,10 @@ namespace Negocio.Serviço.Interface
     {
         IEnumerable<T> ObterTodos();
         T ObterPorId(object id);
-        void Inserir(T Dto);
+        T Inserir(T Dto);
         void Remover(T Dto);
         void Remover(object id);
-        void Atualizar(T Dto);
-        void Validar(T Dto);
+        T Atualizar(T Dto);
+        bool Validar(T Dto);
     }
 }

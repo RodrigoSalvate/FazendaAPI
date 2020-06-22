@@ -18,9 +18,11 @@ namespace Infraestrutura._1_Repositório
             dbSet = context.Set<Entidade>();
         }
 
-        public void Inserir(Entidade entidade)
+        public Entidade Inserir(Entidade entidade)
         {
             dbSet.Add(entidade);
+
+            return entidade;
         }
         public void Remover(Entidade entidade)
         {
@@ -32,9 +34,10 @@ namespace Infraestrutura._1_Repositório
             Remover(dbSet.Find(id));
         }
 
-        public void Atualizar(Entidade entidade)
+        public Entidade Atualizar(Entidade entidade)
         {
             dbSet.Attach(entidade).State = EntityState.Modified;
+            return entidade;
         }
 
         public IEnumerable<Entidade> ObterTodos()

@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using Dominio._1_Entidades;
 using Infraestrutura._2_UnidadeDeTrabalho.Interface;
+using Negocio._Util;
 using Negocio.DTOs;
 using Negocio.Serviço.Interface;
+using Negocio.Validacao;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Negocio.Serviço
 {
@@ -12,10 +15,12 @@ namespace Negocio.Serviço
     {
         private readonly IUnidadeDeTrabalho Udt;
         private readonly IMapper mapper;
-        public AnimalService(IUnidadeDeTrabalho _udt, IMapper _mapper)
+        private readonly IValidacaoService validacaoService;
+        public AnimalService(IUnidadeDeTrabalho _udt, IMapper _mapper, IValidacaoService _validacaoService)
         {
             Udt = _udt;
             mapper = _mapper;
+            validacaoService = _validacaoService;
         }
 
         public AnimalDTO ObterPorId(object id)
@@ -56,9 +61,12 @@ namespace Negocio.Serviço
             Udt.Commit();
         }
 
-        public bool Validar(AnimalDTO Dto)
+        public List<RetornoValidacao> Validar(AnimalDTO Dto)
         {
-            throw new NotImplementedException();
+            validacaoService.ValidarVazioOuNulo(Dto.Cor, ReflectionUtil.ObterNomePropriedade(() => Dto.Cor));
+            validacaoService.ValidarVazioOuNulo(Dto.Peso, ReflectionUtil.ObterNomePropriedade(() => Dto.Peso));
+
+            return validacaoService.validacoes;
         }
     }
 }

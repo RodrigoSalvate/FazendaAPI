@@ -30,14 +30,12 @@ namespace FazendaAPI.Controllers
         {
             if (animalDTO == null) return BadRequest();
 
-            if (_animalService.Validar(animalDTO))
+            var validacao = _animalService.Validar(animalDTO);
+
+            if (!validacao.Any())
                 return new ObjectResult(_animalService.Inserir(animalDTO));
 
-            return BadRequest(new
-            {
-                Error = "Erro de Validação!",
-                Mensagem = "O(s) campo(s) obrigatório(s) não foi(ram) informado(s)."
-            });
+            return BadRequest(validacao);
         }
     }
 }

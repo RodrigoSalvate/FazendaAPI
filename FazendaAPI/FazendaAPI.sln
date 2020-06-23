@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testes", "Testes\Testes.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Negocio", "Negocio\Negocio.csproj", "{3120E889-7A80-43A3-BE98-31ED97E7243C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FazendaAPI", "FazendaAPI\FazendaAPI.csproj", "{0A67A12E-7A78-404B-BA6B-45A7C067038E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FazendaAPI", "FazendaAPI\FazendaAPI.csproj", "{0A67A12E-7A78-404B-BA6B-45A7C067038E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

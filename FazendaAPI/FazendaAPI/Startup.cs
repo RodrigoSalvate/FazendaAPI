@@ -43,7 +43,7 @@ namespace FazendaAPI
             InjecaoDeDependencia(services);
 
             AutoMapper(services);
-        }        
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -79,6 +79,8 @@ namespace FazendaAPI
             services.AddTransient<IServiceBase<AnimalDTO>, AnimalService>();
             services.AddTransient<IRepositorioGenerico<Animal>, RepositorioGenerico<Animal>>();
             services.AddTransient<IUnidadeDeTrabalho, UnidadeDeTrabalho>();
+
+            services.AddScoped<IValidacaoService, ValidacaoService>();
         }
 
         private static void DbContext(IServiceCollection services)

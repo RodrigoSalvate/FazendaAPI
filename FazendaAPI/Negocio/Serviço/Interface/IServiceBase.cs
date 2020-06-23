@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Negocio.Validacao;
 using System.Collections.Generic;
 
 namespace Negocio.Serviço.Interface
@@ -11,6 +11,6 @@ namespace Negocio.Serviço.Interface
         void Remover(T Dto);
         void Remover(object id);
         T Atualizar(T Dto);
-        bool Validar(T Dto);
+        List<RetornoValidacao> Validar(T Dto);
     }
 }

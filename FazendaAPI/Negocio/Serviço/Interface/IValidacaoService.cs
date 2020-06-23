@@ -1,10 +1,14 @@
-﻿using System;
+﻿using Negocio.Validacao;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Negocio.Serviço.Interface
 {
-    public interface IValidacaoService<T> where T : class
+    public interface IValidacaoService
     {
+        bool TemErro { get; }
+
+        List<RetornoValidacao> validacoes { get; set; }
+
+        void ValidarVazioOuNulo(object propriedade, string nomePropriedade);
     }
 }

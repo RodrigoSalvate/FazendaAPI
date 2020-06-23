@@ -1,5 +1,6 @@
 ﻿using Dominio._0_Repositório;
 using Dominio._1_Entidades.Base;
+using Dominio._ListaPaginada;
 using Infraestrutura._0_Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -7,24 +8,24 @@ using System.Linq;
 
 namespace Infraestrutura._1_Repositório
 {
-    public class RepositorioGenerico<Entidade> : IRepositorioGenerico<Entidade> where Entidade : EntidadeBase
+    public class RepositorioGenerico<T> : IRepositorioGenerico<T> where T : EntidadeBase
     {
         internal SqlServerContext context;
-        internal DbSet<Entidade> dbSet;
+        internal DbSet<T> dbSet;
 
         public RepositorioGenerico(SqlServerContext _context)
         {
             context = _context;
-            dbSet = context.Set<Entidade>();
+            dbSet = context.Set<T>();
         }
 
-        public Entidade Inserir(Entidade entidade)
+        public T Inserir(T entidade)
         {
             dbSet.Add(entidade);
 
             return entidade;
         }
-        public void Remover(Entidade entidade)
+        public void Remover(T entidade)
         {
             dbSet.Remove(entidade);
         }
@@ -34,15 +35,15 @@ namespace Infraestrutura._1_Repositório
             Remover(dbSet.Find(id));
         }
 
-        public Entidade Atualizar(Entidade entidade)
+        public T Atualizar(T entidade)
         {
             dbSet.Attach(entidade).State = EntityState.Modified;
             return entidade;
         }
 
-        public IEnumerable<Entidade> ObterTodos()
+        public ListaPaginada<T> ObterTodos(int numeroPagina, int tamanhoPagina)
         {
-            return dbSet.ToList();
+            return ListaPaginada<T>.PaginarLista(dbSet, numeroPagina, tamanhoPagina);
         }
     }
 }

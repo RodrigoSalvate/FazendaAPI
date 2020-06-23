@@ -5,9 +5,7 @@ using Negocio._Util;
 using Negocio.DTOs;
 using Negocio.Serviço.Interface;
 using Negocio.Validacao;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace Negocio.Serviço
 {
@@ -23,14 +21,11 @@ namespace Negocio.Serviço
             validacaoService = _validacaoService;
         }
 
-        public AnimalDTO ObterPorId(object id)
+        public IEnumerable<AnimalDTO> ObterTodos(ParametrosBusca parametrosBusca)
         {
-            throw new NotImplementedException();
-        }
+            var animais = Udt.AnimalRepositorio.ObterTodos(parametrosBusca.NumeroDaPagina, parametrosBusca.TamanhoDaPagina);
 
-        public IEnumerable<AnimalDTO> ObterTodos()
-        {
-            return mapper.Map<IEnumerable<Animal>, IEnumerable<AnimalDTO>>(Udt.AnimalRepositorio.ObterTodos());
+            return mapper.Map<IEnumerable<Animal>, IEnumerable<AnimalDTO>>(animais);
         }
 
         public AnimalDTO Atualizar(AnimalDTO Dto)

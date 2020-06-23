@@ -1,14 +1,14 @@
 ﻿using Dominio._1_Entidades.Base;
-using System.Collections.Generic;
+using Dominio._ListaPaginada;
 
 namespace Dominio._0_Repositório
 {
-    public interface IRepositorioGenerico<Entidade> where Entidade : EntidadeBase
+    public interface IRepositorioGenerico<T> where T : EntidadeBase
     {
-        Entidade Inserir(Entidade entidade);
-        void Remover(Entidade entidade);
+        T Inserir(T entidade);
+        void Remover(T entidade);
         void Remover(object id);
-        Entidade Atualizar(Entidade entidade);
-        IEnumerable<Entidade> ObterTodos();
+        T Atualizar(T entidade);
+        ListaPaginada<T> ObterTodos(int numeroPagina, int tamanhoPagina);
     }
 }

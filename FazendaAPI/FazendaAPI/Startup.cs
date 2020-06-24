@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using AutoMapper;
 using Dominio._0_Repositório;
 using Dominio._1_Entidades;
@@ -11,16 +8,17 @@ using Infraestrutura._2_UnidadeDeTrabalho;
 using Infraestrutura._2_UnidadeDeTrabalho.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using Negocio.AutoMapper.Profiles;
 using Negocio.DTOs;
 using Negocio.Serviço;
 using Negocio.Serviço.Interface;
+
 
 namespace FazendaAPI
 {
@@ -43,6 +41,11 @@ namespace FazendaAPI
             InjecaoDeDependencia(services);
 
             AutoMapper(services);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fazenda Brasil WEB_API", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,10 +55,20 @@ namespace FazendaAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseRouting();
+           app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+
+            app.UseRewriter(option);
 
             app.UseEndpoints(endpoints =>
             {

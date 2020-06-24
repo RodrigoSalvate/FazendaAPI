@@ -6,7 +6,7 @@ using Negocio.Serviço.Interface;
 
 namespace FazendaAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AnimalController : Controller
     {

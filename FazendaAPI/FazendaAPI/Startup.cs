@@ -85,8 +85,10 @@ namespace FazendaAPI
 
         private static void DbContext(IServiceCollection services)
         {
+            var conexao =  Environment.GetEnvironmentVariable("SQLAZURECONNSTR_Connection");
+
             services.AddDbContext<SqlServerContext>(options =>
-                                   options.UseSqlServer(@"Server=localhost\SQLEXPRESS;Database=fazendaapi;Trusted_Connection=True;"));
+                                   options.UseSqlServer(conexao));
         }
     }
 }

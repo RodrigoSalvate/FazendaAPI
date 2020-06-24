@@ -14,11 +14,18 @@ namespace Negocio.Serviço
         private readonly IUnidadeDeTrabalho Udt;
         private readonly IMapper mapper;
         private readonly IValidacaoService validacaoService;
+
         public AnimalService(IUnidadeDeTrabalho _udt, IMapper _mapper, IValidacaoService _validacaoService)
         {
             Udt = _udt;
             mapper = _mapper;
             validacaoService = _validacaoService;
+        }
+
+        public AnimalService(IUnidadeDeTrabalho _udt, IMapper _mapper)
+        {
+            Udt = _udt;
+            mapper = _mapper;
         }
 
         public IEnumerable<AnimalDTO> ObterTodos(ParametrosBusca parametrosBusca)

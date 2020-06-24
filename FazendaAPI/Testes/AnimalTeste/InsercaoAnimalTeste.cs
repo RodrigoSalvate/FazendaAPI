@@ -39,7 +39,7 @@ namespace Testes.AnimalTeste
                 Peso = faker.Random.Double(30, 500),
                 Foto = faker.Random.Bytes(10)
             };
-            animalService = new AnimalService(mockUdt.Object, Mapper);
+            //animalService = new AnimalService(mockUdt.Object, Mapper);
         }
                 
         [Fact]

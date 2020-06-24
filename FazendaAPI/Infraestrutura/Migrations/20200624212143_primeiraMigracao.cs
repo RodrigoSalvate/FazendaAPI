@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestrutura.Migrations
 {
-    public partial class PrimeiraMigracao : Migration
+    public partial class primeiraMigracao : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

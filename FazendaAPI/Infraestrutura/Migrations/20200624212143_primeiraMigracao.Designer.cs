@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestrutura.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20200619174830_PrimeiraMigracao")]
-    partial class PrimeiraMigracao
+    [Migration("20200624212143_primeiraMigracao")]
+    partial class primeiraMigracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

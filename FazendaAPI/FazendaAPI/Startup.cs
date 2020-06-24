@@ -88,7 +88,7 @@ namespace FazendaAPI
             var conexao =  Environment.GetEnvironmentVariable("SQLAZURECONNSTR_Connection");
 
             services.AddDbContext<SqlServerContext>(options =>
-                                   options.UseSqlServer(conexao));
+                                   options.UseSqlServer(@"Server=tcp:sqlserversalvate.database.windows.net,1433;Initial Catalog=fazendaapi;Persist Security Info=False;User ID=Rsalvate;Password=RS&stSD$1019;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
         }
     }
 }

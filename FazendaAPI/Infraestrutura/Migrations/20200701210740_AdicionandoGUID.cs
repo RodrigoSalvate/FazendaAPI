@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infraestrutura.Migrations
 {
-    public partial class PrimeiraMigracao : Migration
+    public partial class AdicionandoGUID : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +11,7 @@ namespace Infraestrutura.Migrations
                 name: "Animais",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Cor = table.Column<string>(nullable: true),
                     CaracteristicaFisica = table.Column<string>(nullable: true),
                     Peso = table.Column<double>(nullable: false),

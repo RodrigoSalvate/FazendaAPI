@@ -8,6 +8,9 @@ using Infraestrutura._2_UnidadeDeTrabalho;
 using Infraestrutura._2_UnidadeDeTrabalho.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +45,10 @@ namespace FazendaAPI
 
             AutoMapper(services);
 
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
+                    .AddScoped<IUrlHelper>(x => x.GetRequiredService<IUrlHelperFactory>()
+                    .GetUrlHelper(x.GetRequiredService<IActionContextAccessor>().ActionContext));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Fazenda Brasil WEB_API", Version = "v1" });
@@ -55,7 +62,7 @@ namespace FazendaAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-           app.UseRouting();
+            app.UseRouting();
 
             app.UseAuthorization();
 

@@ -3,6 +3,7 @@ using Dominio._1_Entidades.Base;
 using Dominio._ListaPaginada;
 using Infraestrutura._0_Context;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,20 +31,26 @@ namespace Infraestrutura._1_Repositório
             dbSet.Remove(entidade);
         }
 
-        public void Remover(object id)
+        public void Remover(Guid id)
         {
             Remover(dbSet.Find(id));
         }
 
         public T Atualizar(T entidade)
         {
-            dbSet.Attach(entidade).State = EntityState.Modified;
+            context.Entry(entidade).State = EntityState.Modified;
+           
             return entidade;
         }
 
         public ListaPaginada<T> ObterTodos(int numeroPagina, int tamanhoPagina)
         {
             return ListaPaginada<T>.PaginarLista(dbSet, numeroPagina, tamanhoPagina);
+        }
+
+        public T ObterPorId(Guid id)
+        {
+            return dbSet.Where(w => w.Id == id).FirstOrDefault();
         }
     }
 }

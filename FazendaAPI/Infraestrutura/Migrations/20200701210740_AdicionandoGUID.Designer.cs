@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestrutura.Migrations
 {
     [DbContext(typeof(SqlServerContext))]
-    [Migration("20200619174830_PrimeiraMigracao")]
-    partial class PrimeiraMigracao
+    [Migration("20200701210740_AdicionandoGUID")]
+    partial class AdicionandoGUID
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,9 @@ namespace Infraestrutura.Migrations
 
             modelBuilder.Entity("Dominio._1_Entidades.Animal", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CaracteristicaFisica")
                         .HasColumnType("nvarchar(max)");

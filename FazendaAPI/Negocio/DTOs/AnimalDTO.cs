@@ -1,8 +1,11 @@
-﻿namespace Negocio.DTOs
+﻿using Negocio.HATOAS;
+using System;
+
+namespace Negocio.DTOs
 {
-    public class AnimalDTO
+    public class AnimalDTO : RecursoLink
     {
-        public int? Id { get; set; }
+        public Guid Id { get; set; }
         public string Cor { get; set; }
         public string CaracteristicaFisica { get; set; }
         public double Peso { get; set; }

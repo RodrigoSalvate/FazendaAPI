@@ -21,10 +21,9 @@ namespace Infraestrutura.Migrations
 
             modelBuilder.Entity("Dominio._1_Entidades.Animal", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CaracteristicaFisica")
                         .HasColumnType("nvarchar(max)");

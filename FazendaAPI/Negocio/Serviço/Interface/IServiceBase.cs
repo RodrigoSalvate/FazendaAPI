@@ -1,5 +1,6 @@
 ﻿using Negocio._Util;
 using Negocio.Validacao;
+using System;
 using System.Collections.Generic;
 
 namespace Negocio.Serviço.Interface
@@ -9,8 +10,9 @@ namespace Negocio.Serviço.Interface
         IEnumerable<T> ObterTodos(ParametrosBusca parametrosBusca);
         T Inserir(T Dto);
         void Remover(T Dto);
-        void Remover(object id);
+        void Remover(Guid id);
         T Atualizar(T Dto);
         List<RetornoValidacao> Validar(T Dto);
+        T ObterPorId(Guid id);
     }
 }

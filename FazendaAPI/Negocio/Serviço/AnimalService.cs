@@ -5,6 +5,7 @@ using Negocio._Util;
 using Negocio.DTOs;
 using Negocio.Serviço.Interface;
 using Negocio.Validacao;
+using System;
 using System.Collections.Generic;
 
 namespace Negocio.Serviço
@@ -50,7 +51,7 @@ namespace Negocio.Serviço
             Udt.Commit();
         }
 
-        public void Remover(object id)
+        public void Remover(Guid id)
         {
             Udt.AnimalRepositorio.Remover(id);
             Udt.Commit();
@@ -62,6 +63,11 @@ namespace Negocio.Serviço
             validacaoService.ValidarVazioOuNulo(Dto.Peso, ReflectionUtil.ObterNomePropriedade(() => Dto.Peso));
 
             return validacaoService.validacoes;
+        }
+
+        public AnimalDTO ObterPorId(Guid id)
+        {
+            return mapper.Map<Animal, AnimalDTO>(Udt.AnimalRepositorio.ObterPorId(id));
         }
     }
 }

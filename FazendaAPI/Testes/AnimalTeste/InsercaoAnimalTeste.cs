@@ -11,6 +11,7 @@ using Moq;
 using Negocio.AutoMapper.Profiles;
 using Negocio.DTOs;
 using Negocio.Serviço;
+using System;
 using Xunit;
 
 namespace Testes.AnimalTeste
@@ -33,13 +34,13 @@ namespace Testes.AnimalTeste
 
             animalDTO = new AnimalDTO()
             {
-                Id = faker.Random.Int(1, 100),
+                Id = Guid.NewGuid(),
                 Cor = faker.Internet.Color(),
                 CaracteristicaFisica = faker.Lorem.Paragraph(),
                 Peso = faker.Random.Double(30, 500),
                 Foto = faker.Random.Bytes(10)
             };
-            animalService = new AnimalService(mockUdt.Object, Mapper);
+           // animalService = new AnimalService(mockUdt.Object, Mapper);
         }
                 
         [Fact]
